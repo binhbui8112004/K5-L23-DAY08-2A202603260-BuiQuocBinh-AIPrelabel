@@ -12,8 +12,8 @@
 | Lỗi **theo đối tượng** | 6/115 = 5.2% | 115 đối tượng trong mẫu |
 | **Ảnh có lỗi** (dùng cho ngưỡng) | 3/5 = 60.0% | 5 ảnh trong mẫu |
 | Máy: accepted / edited / deleted | 493/603 = 81.8% / 34/603 = 5.6% / 64/603 = 10.6% | 603 box máy |
-| Máy: added | 60/588 = 10.2% | 588 đối tượng sau duyệt |
-| Bắt lỗi bẫy | 9/12 = 75.0% | 12 bẫy |
+| Máy: added | 59/587 = 10.1% | 587 đối tượng sau duyệt |
+| Bắt lỗi bẫy | 11/12 = 91.7% | 12 bẫy |
 
 ## Top 3 loại lỗi
 | Loại lỗi | Số lỗi | Ảnh ví dụ |
@@ -31,6 +31,5 @@
 
 - ảnh có lỗi 60.0% > 2%
 - lỗi hệ thống: 'thua' chiếm 5/6 lỗi
-- bắt bẫy 75% < 80% -> lô duyệt chưa đáng tin
 
 Cây quyết định: Hold (guideline chưa rõ / dữ liệu hỏng) -> Rework (> ngưỡng, lỗi lặp, bắt bẫy / nhất quán thấp) -> Release.

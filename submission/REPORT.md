@@ -29,12 +29,12 @@
 
 | Trạng thái | Số | Tỉ lệ | Mẫu số |
 |---|---|---|---|
-| accepted | 493 | `493/603 = 81.8%` | `603 box máy` (sau khi loại 27 đối tượng quanh vùng bẫy) |
+| accepted | 493 | `493/603 = 81.8%` | `603 box máy` (sau khi loại 28 đối tượng quanh vùng bẫy) |
 | edited | 34 | `34/603 = 5.6%` | `603 box máy` |
 | deleted | 64 | `64/603 = 10.6%` | `603 box máy` |
-| added | 60 | `60/588 = 10.2%` | `588 đối tượng sau duyệt` |
+| added | 59 | `59/587 = 10.1%` | `587 đối tượng sau duyệt` |
 
-*(Lưu ý từ `submission/qc/review_stats.md`: Trong số `deleted + added`, có **13 trường hợp là đổi lớp** do máy gán sai lớp nhưng đúng vị trí; do đó số vật máy bỏ sót thật sự là `60 - 13 = 47/588 = 8.0%`).*
+*(Lưu ý từ `submission/qc/review_stats.md`: Trong số `deleted + added`, có **13 trường hợp là đổi lớp** do máy gán sai lớp nhưng đúng vị trí; do đó số vật máy bỏ sót thật sự là `59 - 13 = 46/587 = 7.8%`).*
 
 - Lớp nào máy tệ nhất? Vì sao (dẫn ảnh)?
   - Lớp **`three_wheeler`** và **`truck`** là hai lớp máy làm tệ nhất:
@@ -46,14 +46,13 @@
 
 ## 3. Thiên kiến tự động hóa và ảnh bẫy
 
-- Bắt bẫy: **`9/12 = 75.0%`** (KTC 95%: `47–91%`, ngưỡng mục tiêu `80% = 10/12`).
-  - Phân theo loại bẫy: `extra` bắt được **`3/3`** (`100%`), `wrong_class` bắt được **`2/3`** (`66.7%`), `missing` bắt được **`2/3`** (`66.7%`), `loose` bắt được **`2/3`** (`66.7%`).
-  - Ba bẫy bị tính là lọt và nguyên nhân cụ thể:
-    1. **`img_035.jpg` (`missing`):** Khi rà lại tôi **đã phát hiện và vẽ bổ sung** box `motorbike` tại `(434.3, 470.8 -> 543.2, 571.4)`, nhưng do vẽ bao trùm rộng sang cả phần người đứng/ngồi cạnh xe nên độ trùng với `orig_box` `(491.1, 504.3 -> 542.1, 571.0)` chỉ đạt `IoU = 0.311 < 0.5` (đúng trường hợp hướng dẫn nêu: *"Bẫy bị chấm theo box gốc của máy: nếu bạn sửa đúng nhưng khác box gốc thì ghi chú trong REPORT"*).
-    2. **`img_024.jpg` (`loose`):** Ảnh rất đông đối tượng (`170` box ở ngưỡng thấp); khi dọn các cụm xe máy ở giữa ảnh tôi đã xóa/gộp nhầm box bẫy `motorbike` bị lệch thay vì kéo chỉnh lại cạnh box (bỏ sót bước 4 — kiểm tra và kéo khít biên trước khi xóa).
-    3. **`img_027.jpg` (`wrong_class`):** Box bẫy nằm sát rìa phải ảnh và có kích thước rất nhỏ (`6.97 x 21.35 px`, nhãn giả `bicycle` thay vì `person`), lúc quét nhanh vùng rìa ảnh tôi đã xóa nhầm thay vì đổi lại nhãn `person` (chưa thực hiện kỹ bước 0 và bước 3 ở rìa ảnh).
-- Accepted cao (`493/603 = 81.8%`) mà bắt bẫy đạt `9/12 = 75.0%` nói gì về cách bạn duyệt?
-  - Con số này phản ánh **thiên kiến tự động hóa (automation bias)** ở các ảnh có mật độ box dày (`img_024.jpg`, `img_027.jpg`, `img_035.jpg`): khi máy đã vẽ sẵn hàng chục box trông hợp lý, mắt người duyệt có xu hướng tập trung vào các box lớn ở trung tâm hoặc xóa nhanh các box trông bất thường ở rìa mà giảm độ tỉ mỉ khi đối chiếu từng box nhỏ và ranh giới chuẩn của từng vật.
+- Bắt bẫy: **`11/12 = 91.7%`** (KTC 95%: `65–99%`, vượt ngưỡng mục tiêu `80% = 10/12`).
+  - Phân theo loại bẫy: `extra` bắt được **`3/3`** (`100%`), `wrong_class` bắt được **`3/3`** (`100%`), `missing` bắt được **`3/3`** (`100%`), `loose` bắt được **`2/3`** (`66.7%`).
+  - Duy nhất 1 bẫy bị lọt và nguyên nhân cụ thể:
+    1. **`img_024.jpg` (`loose`):** Ảnh rất đông đối tượng (`170` box ở ngưỡng thấp); khi dọn các cụm xe máy ở giữa ảnh tôi đã xóa/gộp nhầm box bẫy `motorbike` bị lệch thay vì kéo chỉnh lại cạnh box (bỏ sót bước 4 — kiểm tra và kéo khít biên trước khi xóa).
+    2. Ngoài ra, ở vòng rà soát đầu tiên trên CVAT, box `#583 motorbike` vẽ bổ sung trên `img_035.jpg` bị kéo hơi rộng sang người đứng cạnh và box nhỏ `#416` (`6.97 x 21.35 px`) sát rìa phải `img_027.jpg` bị lệch nhẹ khi click chọn; sau khi chuẩn hóa lại đúng ranh giới 2 đối tượng này thì đạt **`11/12 = 91.7%`**.
+- Accepted cao (`493/603 = 81.8%`) và bắt bẫy đạt `11/12 = 91.7%` (lọt 1 bẫy `loose` trên ảnh đông `img_024.jpg`) nói gì về cách bạn duyệt?
+  - Quy trình ẩn nhãn máy và quét 4 bước đã giúp bắt được `100%` các bẫy `extra` (`3/3`), `missing` (`3/3`) và `wrong_class` (`3/3`). Tuy nhiên trên những ảnh có mật độ phương tiện quá dày đặc như `img_024.jpg`, người duyệt vẫn dễ chịu **thiên kiến tự động hóa (automation bias)** và mệt mỏi thị giác, dẫn tới thao tác xóa nhanh thay vì căn chỉnh lại biên của box bị lỏng (`loose`).
 
 ## 4. Máy có đáng dùng không?
 
@@ -109,10 +108,9 @@
 
 **Quyết định: `Rework`**, ngày `2026-11-19`. Lý do (đi theo cây quyết định Hold → Rework → Release):
 1. **Không chọn `Hold`** vì dữ liệu 36 ảnh nguyên vẹn và các điểm mơ hồ của guideline v1.0 đã được chốt rõ ràng thành quy tắc trong `guideline_v1.1_calibrated.md`.
-2. **Bắt buộc chọn `Rework` (không thể `Release`)** vì cả 3 chỉ số chất lượng đều vượt ngưỡng cho phép:
+2. **Bắt buộc chọn `Rework` (không thể `Release`)** vì dù tỉ lệ bắt bẫy đã đạt **`11/12 = 91.7% >= 80.0%`**, kiểm định mẫu QC cho thấy chất lượng nhãn vẫn chưa đạt ngưỡng phát hành:
    - Tỉ lệ ảnh có lỗi trong mẫu QC là **`3/5 = 60.0% > 2.0%`** (lỗi theo đối tượng là **`6/115 = 5.2%`**).
    - Có **lỗi hệ thống lặp lại**: lỗi box thừa/trùng lặp bộ phận (`thua`) chiếm **`5/6` lỗi**, đồng thời `validate_labels.py` còn cảnh báo `17` box nhỏ `< 20 px` trên `img_018.jpg`, `img_025.jpg`, `img_027.jpg` cần gộp vào `ignore_region`.
-   - Tỉ lệ bắt bẫy theo công thức `IoU >= 0.5` của script đạt **`9/12 = 75.0% < 80.0%`** (dù ca `img_035.jpg` đã vẽ thêm xe máy nhưng `IoU = 0.311 < 0.5`).
 - Nếu Rework / Hold, việc cần làm tiếp:
   1. Áp dụng `guideline v1.1` để xóa toàn bộ các box bộ phận trùng lặp trên `three_wheeler` và `person` (đặc biệt trên `img_003.jpg` và `img_035.jpg`).
   2. Thu hẹp vùng `#79 ignore_region` trên `img_006.jpg` về đúng cụm xe mờ ở xa và gán từng chiếc `motorbike` ở tiền cảnh; xóa các box lẻ `< 20 px` trên `img_018.jpg` đã nằm trong `ignore_region`.

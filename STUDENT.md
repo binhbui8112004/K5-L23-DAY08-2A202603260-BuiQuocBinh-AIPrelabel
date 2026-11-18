@@ -11,9 +11,9 @@
 
 ## Kết quả tóm tắt (điền cuối bài; số lấy từ `submission/qc/*`, kèm mẫu số)
 
-- Máy: accepted / edited / deleted: `493/603 = 81.8%` / `34/603 = 5.6%` / `64/603 = 10.6%` (mẫu số: `603` box máy); added: `60/588 = 10.2%` (mẫu số: `588` đối tượng sau duyệt)
+- Máy: accepted / edited / deleted: `493/603 = 81.8%` / `34/603 = 5.6%` / `64/603 = 10.6%` (mẫu số: `603` box máy); added: `59/587 = 10.1%` (mẫu số: `587` đối tượng sau duyệt)
 - So với gold: precision / recall của **máy**: `46/63 = 73.0%` (mẫu số: `63` box máy trên gold) / `46/53 = 86.8%` (mẫu số: `53` đối tượng gold)
-- Bắt bẫy: `9/12 = 75.0%` (mẫu số: `12` bẫy; thêm 1 ca `img_035.jpg` đã vẽ bổ sung `motorbike` nhưng `IoU = 0.311 < 0.5`)
+- Bắt bẫy: `11/12 = 91.7%` (mẫu số: `12` bẫy; đạt vượt ngưỡng 80%, chỉ lọt 1 bẫy `loose` trên `img_024.jpg`)
 - Thời gian: gán tay `22/4 = 5.50 phút/ảnh` (`22` phút / `4` ảnh gold); duyệt có pre-label `120/24 = 5.00 phút/ảnh` (`120` phút / `24` ảnh batch)
 - Lỗi QC: `60.0%` theo ảnh (`3/5` ảnh mẫu có lỗi), `5.2%` theo đối tượng (`6/115` đối tượng trong mẫu)
-- **Quyết định:** `Rework` — lý do một dòng: Tỉ lệ ảnh lỗi trong mẫu QC là `3/5 = 60.0% > 2%` (chủ yếu do lỗi lặp box bộ phận thừa `5/6` lỗi trên `img_003, img_035`) và tỉ lệ bắt bẫy theo ngưỡng IoU của script là `9/12 = 75.0% < 80%`.
+- **Quyết định:** `Rework` — lý do một dòng: Dù bắt bẫy đạt `11/12 = 91.7% >= 80%`, tỉ lệ ảnh lỗi trong mẫu QC vẫn là `3/5 = 60.0% > 2%` (chủ yếu do lỗi lặp box bộ phận thừa `5/6` lỗi trên `img_003, img_035`).

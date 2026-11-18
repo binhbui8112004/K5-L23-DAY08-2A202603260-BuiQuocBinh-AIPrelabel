@@ -1,7 +1,7 @@
 # Số đo review (det)
 
-- Ảnh tính: 24 (batch,gold); box máy: 603; đối tượng sau duyệt: 588; ngưỡng accepted: IoU >= 0.9
-- Đã **loại 27 đối tượng nằm quanh các bẫy** khỏi bảng này: lỗi nhân tạo không phản ánh chất lượng máy.
+- Ảnh tính: 24 (batch,gold); box máy: 603; đối tượng sau duyệt: 587; ngưỡng accepted: IoU >= 0.9
+- Đã **loại 28 đối tượng nằm quanh các bẫy** khỏi bảng này: lỗi nhân tạo không phản ánh chất lượng máy.
 
 ## 1. Bốn trạng thái (AI error profile)
 | Trạng thái | Số | Tỉ lệ | Mẫu số |
@@ -9,15 +9,15 @@
 | accepted (giữ nguyên) | 493 | 493/603 = 81.8% | 603 box máy |
 | edited (sửa) | 34 | 34/603 = 5.6% | 603 box máy |
 | deleted (xoá) | 64 | 64/603 = 10.6% | 603 box máy |
-| added (vẽ thêm) | 60 | 60/588 = 10.2% | 588 đối tượng sau duyệt |
+| added (vẽ thêm) | 59 | 59/587 = 10.1% | 587 đối tượng sau duyệt |
 
-Trong số deleted + added, **13 trường hợp là đổi lớp** (máy gán sai lớp, box đúng chỗ): đó không phải máy bỏ sót. Số vật máy **sót thật** ≈ added − đổi lớp = 47.
+Trong số deleted + added, **13 trường hợp là đổi lớp** (máy gán sai lớp, box đúng chỗ): đó không phải máy bỏ sót. Số vật máy **sót thật** ≈ added − đổi lớp = 46.
 
 ### Theo lớp
 | Lớp | accepted | edited | deleted | added |
 |---|---|---|---|---|
 | person | 252 | 9 | 9 | 28 |
-| bicycle | 5 | 1 | 2 | 7 |
+| bicycle | 5 | 1 | 2 | 6 |
 | motorbike | 185 | 16 | 24 | 10 |
 | car | 35 | 1 | 2 | 6 |
 | bus | 2 | 0 | 1 | 2 |
@@ -36,12 +36,12 @@ Trong số deleted + added, **13 trường hợp là đổi lớp** (máy gán s
 (Ảnh gold không nằm trong nhãn sau duyệt: không tính residual / new error. Đó là chủ ý: duyệt lại ảnh bạn vừa tự gán tay sẽ đo trí nhớ, không đo thiên kiến.)
 
 ## 3. Ảnh bẫy
-- Bắt được 9/12 = 75.0% (KTC 95%: 47–91%) (ngưỡng đạt: 80%). Chỉ 12 bẫy nên khoảng tin cậy rất rộng: đọc cùng danh sách bẫy lọt, đừng kết luận chỉ từ %.
-  - wrong_class: 2/3
-  - missing: 2/3
+- Bắt được 11/12 = 91.7% (KTC 95%: 65–99%) (ngưỡng đạt: 80%). Chỉ 12 bẫy nên khoảng tin cậy rất rộng: đọc cùng danh sách bẫy lọt, đừng kết luận chỉ từ %.
+  - wrong_class: 3/3
+  - missing: 3/3
   - loose: 2/3
   - extra: 3/3
-  - lọt: img_035.jpg (missing), img_024.jpg (loose), img_027.jpg (wrong_class)
+  - lọt: img_024.jpg (loose)
 
 ## Gợi ý đọc số
 - `deleted` cao → ngưỡng thấp hoặc ánh xạ nhãn sai; `added` cao → máy bỏ sót (xem lớp nào);

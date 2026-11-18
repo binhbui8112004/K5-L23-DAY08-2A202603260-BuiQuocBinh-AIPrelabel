@@ -2,16 +2,16 @@
  "mode": "det",
  "images": 24,
  "pre_boxes": 603,
- "final_objects": 588,
+ "final_objects": 587,
  "accepted": 493,
  "edited": 34,
  "deleted": 64,
- "added": 60,
+ "added": 59,
  "class_changed_info": 13,
  "accepted_rate": 0.8175787728026535,
  "edited_rate": 0.05638474295190713,
  "deleted_rate": 0.10613598673300166,
- "added_rate": 0.10204081632653061,
+ "added_rate": 0.10051107325383304,
  "per_class": {
   "three_wheeler": {
    "accepted": 13,
@@ -33,7 +33,7 @@
   },
   "bicycle": {
    "accepted": 5,
-   "added": 7,
+   "added": 6,
    "deleted": 2,
    "edited": 1
   },
@@ -70,15 +70,15 @@
  },
  "traps": {
   "n": 12,
-  "caught": 9,
-  "rate": 0.75,
+  "caught": 11,
+  "rate": 0.9166666666666666,
   "by_type": {
    "wrong_class": [
-    2,
+    3,
     3
    ],
    "missing": [
-    2,
+    3,
     3
    ],
    "loose": [
@@ -92,16 +92,8 @@
   },
   "missed": [
    [
-    "img_035.jpg",
-    "missing"
-   ],
-   [
     "img_024.jpg",
     "loose"
-   ],
-   [
-    "img_027.jpg",
-    "wrong_class"
    ]
   ]
  },
