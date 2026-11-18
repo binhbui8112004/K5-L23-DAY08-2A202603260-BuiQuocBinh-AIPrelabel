@@ -1,0 +1,9 @@
+image,object_id,error_type,reviewer,note
+img_003.jpg,24,thua,BuiQuocBinh,Box three_wheeler #24 chi om phan thung duoi trung lap voi box #23 om ca xe
+img_003.jpg,25,thua,BuiQuocBinh,Box three_wheeler #25 chi om phan mai bat tren trung lap voi box #23
+img_003.jpg,6,thua,BuiQuocBinh,Box three_wheeler #6 o sat mep trai bat nham mai hien/vat nho khong phai xe ba banh
+img_003.jpg,7,thua,BuiQuocBinh,Box three_wheeler #7 o sat mep phai bat nham khung sat ben le duong
+img_006.jpg,79,sai_vi_tri_kich_thuoc,BuiQuocBinh,Vung ignore_region #79 bao trum ca hang xe may do ro rang o tien canh (vi pham muc 2 va 4.1.6)
+img_014.jpg,,khong,BuiQuocBinh,20 doi tuong person va motorbike deu dung lop va om sat
+img_031.jpg,,khong,BuiQuocBinh,3 doi tuong (#507 person, #508 bicycle kem gio hang, #509 person) deu dung quy tac
+img_035.jpg,572,thua,BuiQuocBinh,Box person #572 (conf 0.36) chi om phan dau trung lap ben trong box person #578 (conf 0.93)
